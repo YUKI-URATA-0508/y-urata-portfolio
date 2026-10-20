@@ -37,7 +37,7 @@ pnpm start
 
 初回のビルド・開発起動にはGoogle Fontsへの接続が必要です。フォントはビルド時に取得してサイト側から配信し、閲覧者のブラウザーからGoogle Fontsへリクエストしません。オフラインビルドが必要になった場合は、ライセンスを同梱したローカルフォントへ切り替え、`next/font/local`を使用してください。
 
-環境変数、認証情報、外部APIは不要です。
+通常のローカル開発では環境変数・認証情報・外部APIは不要です。GitHub Pages向けビルドのみ`NEXT_PUBLIC_BASE_PATH`を設定します（GitHub Actionsで自動設定）。`pnpm build`は`out`へ静的ファイルを書き出し、`pnpm start`はそのローカルプレビューを起動します。
 
 ## ファイル構成
 
@@ -87,7 +87,7 @@ docs/
 
 画像枠側で`aspect-ratio`と`object-fit: cover`を設定しているため、元画像の縦横比が変わっても枠のサイズを維持します。Heroは固定高を基準にしています。画像表示には`next/image`の`fill`・`sizes`を使用し、Heroを優先読み込み、それ以外を遅延読み込みします。About / Contactと該当実績はCSSでモノクロ化しています。
 
-画像最適化のためにNext.jsサーバーを使用します。単純な静的ファイル配信へ変更する場合は、デプロイ先決定後に画像ローダーまたは静的書き出しの設定を見直してください。
+GitHub Pages向けの静的出力に対応しています。`next/image`の枠・遅延読み込みは使用しますが、サーバー側の画像変換は無効です。現在の画像をそのまま配信するため、差し替え画像は事前に適切なサイズ・容量に圧縮してください。
 
 ## データ・リンクの編集
 
@@ -111,6 +111,10 @@ docs/
 - CSSのホバー演出は実績画像と有効なリンクの矢印に限定しています。
 - JavaScript無効時も本文・画像が表示され、ローディングで覆われません。
 
+## GitHub Pagesへ公開
+
+Pages用の設定と自動公開ワークフローを用意しています。初回はGitHub上でリポジトリをPublicに変更し、PagesのSourceをGitHub Actionsにしてください。操作手順は [docs/github-pages.md](docs/github-pages.md) を参照してください。
+
 ## GitHubへアップロード
 
 Gitは初期化済みです。GitHub上に空のリポジトリを作り、URLを置き換えて実行します。
@@ -124,7 +128,7 @@ git remote add origin https://github.com/YOUR_ACCOUNT/YOUR_REPOSITORY.git
 git push -u origin main
 ```
 
-すでに`origin`がある場合は`git remote -v`で確認してください。`.next`、`node_modules`、`.env`、検証スクリーンショットなどは除外済みです。`pnpm-lock.yaml`と`pnpm-workspace.yaml`は再現可能な依存管理のためにコミットしてください。GitHubへの送信・デプロイは今回実行していません。
+現在のリポジトリは`origin`登録済みで、既定ブランチは`master`です。上記コマンドは新規リポジトリ向けの参考手順です。現在のプロジェクトではGitHub DesktopのCommitとPush originで更新してください。`.next`、`node_modules`、`out`、`.env`、検証スクリーンショットなどは除外済みです。`pnpm-lock.yaml`と`pnpm-workspace.yaml`は再現可能な依存管理のためにコミットしてください。
 
 ## 次に追加するもの
 

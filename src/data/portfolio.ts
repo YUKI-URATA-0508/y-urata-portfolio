@@ -1,17 +1,19 @@
+import { publicPath } from "@/lib/paths";
+
 /** Replace local files or update these paths. Keep crop adjustments alongside each image. */
 export const images = {
   hero: {
-    src: "/images/hero-architecture.jpg",
+    src: publicPath("/images/hero-architecture.jpg"),
     alt: "空へ向かって伸びる建築物",
     position: "center 46%",
   },
   about: {
-    src: "/images/about-workspace.jpg",
+    src: publicPath("/images/about-workspace.jpg"),
     alt: "光が差し込む静かなワークスペース",
     position: "center",
   },
   contact: {
-    src: "/images/contact-mountains.jpg",
+    src: publicPath("/images/contact-mountains.jpg"),
     alt: "幾重にも連なる山の稜線",
     position: "center 48%",
   },
@@ -33,7 +35,7 @@ export const works: Work[] = [
     id: "01",
     title: "Branding",
     description: "ブランド設計 / CI・VI",
-    image: "/images/work-branding.jpg",
+    image: publicPath("/images/work-branding.jpg"),
     alt: "ブルーの光が映る抽象的なテクノロジーイメージ",
     monochrome: false,
   },
@@ -41,7 +43,7 @@ export const works: Work[] = [
     id: "02",
     title: "Web Design",
     description: "Webサイト制作",
-    image: "/images/work-web.jpg",
+    image: publicPath("/images/work-web.jpg"),
     alt: "ノートパソコンのキーボード",
     monochrome: true,
   },
@@ -49,7 +51,7 @@ export const works: Work[] = [
     id: "03",
     title: "Product Design",
     description: "プロダクトデザイン",
-    image: "/images/work-product.jpg",
+    image: publicPath("/images/work-product.jpg"),
     alt: "スマートフォンのプロダクトイメージ",
     monochrome: true,
   },

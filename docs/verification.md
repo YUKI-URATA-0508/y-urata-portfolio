@@ -1,5 +1,19 @@
 # 検証記録
 
+## 2026-10-20: GitHub Pages対応
+
+`output: export`とPages用basePathを設定し、公開用ディレクトリ`out`を生成しました。画像は静的配信に変更し、公開用URLの接頭辞を画像・アイコンへ適用しています。
+
+- Pages用basePath `/y-urata-portfolio`を指定した本番ビルド: 成功
+- 型チェック・Lint: 成功
+- 静的プレビューのHTTP応答: 200
+- 1440px / 390px: 横はみ出しなし
+- 全画像読み込み・WORKSへのアンカー移動: 成功
+- JavaScript / HTTP読み込みエラー: なし
+- 低減モーション・JavaScript無効時の本文表示: 正常
+
+GitHubの管理API機能が接続ツールに含まれず、保存済みGit認証も利用できませんでした。操作用ブラウザーはGitHub未ログインで、GitHub側のPublic変更・Pages有効化は未実施です。変更コードはローカルに保存済みで、GitHub DesktopからCommit / Pushし、[公開手順](github-pages.md)に沿って設定できます。公開URLでの検証は未実施です。
+
 検証日: 2026-10-16（日本時間）
 
 ## 実行結果
